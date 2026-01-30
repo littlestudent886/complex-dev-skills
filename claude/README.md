@@ -8,7 +8,7 @@ This folder contains plugins intended for Claude Code's plugin marketplace.
 Quick install (in Claude Code):
 
 ```text
-/plugin marketplace add <your-github-user-or-org>/complex-dev-skills
+/plugin marketplace add littlestudent886/complex-dev-skills
 /plugin install feature-dev@complex-dev-skills
 ```
 

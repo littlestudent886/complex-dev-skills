@@ -21,7 +21,7 @@ Install directly from GitHub:
 
 ```bash
 python ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-  --repo <your-github-user-or-org>/complex-dev-skills \
+  --repo littlestudent886/complex-dev-skills \
   --path codex/skills/feature-dev
 ```
 
@@ -44,7 +44,7 @@ Restart Codex to pick up new skills.
 In Claude Code, run:
 
 ```text
-/plugin marketplace add <your-github-user-or-org>/complex-dev-skills
+/plugin marketplace add littlestudent886/complex-dev-skills
 /plugin install feature-dev@complex-dev-skills
 ```
 
