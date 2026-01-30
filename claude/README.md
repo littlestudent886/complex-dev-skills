@@ -9,12 +9,12 @@ Quick install (in Claude Code):
 
 ```text
 /plugin marketplace add littlestudent886/complex-dev-skills
-/plugin install feature-dev@complex-dev-skills
+/plugin install complex-feature-dev@complex-dev-skills
 ```
 
 Use:
 
 ```text
-/feature-dev:init
-/feature-dev <feature description>
+/complex-feature-dev:init
+/complex-feature-dev <feature description>
 ```

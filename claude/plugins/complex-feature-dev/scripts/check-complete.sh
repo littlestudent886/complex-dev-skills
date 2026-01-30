@@ -13,7 +13,7 @@ if [ ! -f "${PLAN_FILE}" ]; then
   exit 1
 fi
 
-echo "=== Feature-Dev Completion Check ==="
+echo "=== Complex-Feature-Dev Completion Check ==="
 
 total="$(grep -cE '^### Phase ' "${PLAN_FILE}" || true)"
 complete="$(grep -cF '**Status:** complete' "${PLAN_FILE}" || true)"

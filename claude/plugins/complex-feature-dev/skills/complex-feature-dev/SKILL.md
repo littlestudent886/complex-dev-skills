@@ -1,5 +1,5 @@
 ---
-name: feature-dev
+name: complex-feature-dev
 version: "1.0.0"
 description: Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md).
 user-invocable: true
@@ -72,7 +72,7 @@ hooks:
             if [ -f "$PLAN_FILE" ] && [ -f "$FINDINGS_FILE" ] && [ -f "$PROGRESS_FILE" ]; then
               print_plan_head "$PLAN_FILE"
             else
-              echo "[feature-dev] Planning files not found (task_plan.md/findings.md/progress.md). Initializing..."
+              echo "[complex-feature-dev] Planning files not found (task_plan.md/findings.md/progress.md). Initializing..."
               init_plan_files || true
 
               ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
@@ -81,10 +81,10 @@ hooks:
               PROGRESS_FILE="${ROOT}/progress.md"
 
               if [ -f "$PLAN_FILE" ] && [ -f "$FINDINGS_FILE" ] && [ -f "$PROGRESS_FILE" ]; then
-                echo "[feature-dev] Initialized planning files."
+                echo "[complex-feature-dev] Initialized planning files."
                 print_plan_head "$PLAN_FILE"
               else
-                echo "[feature-dev] Init failed. Run manually:"
+                echo "[complex-feature-dev] Init failed. Run manually:"
                 echo "  bash \"${CLAUDE_PLUGIN_ROOT}/scripts/init-session.sh\""
                 echo "  pwsh -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}\\scripts\\init-session.ps1\""
               fi
@@ -93,7 +93,7 @@ hooks:
     - matcher: "Write|Edit"
       hooks:
         - type: command
-          command: "echo '[feature-dev] If you completed a phase, update task_plan.md status and record notes in findings.md/progress.md.'"
+          command: "echo '[complex-feature-dev] If you completed a phase, update task_plan.md status and record notes in findings.md/progress.md.'"
   Stop:
     - hooks:
         - type: command
@@ -169,7 +169,7 @@ This workflow requires these files in the **repo root**:
 - `progress.md`
 
 To initialize them, run:
-- `/feature-dev:init` (recommended)
+- `/complex-feature-dev:init` (recommended)
 
 Or via terminal:
 - macOS/Linux (or Windows Git Bash): `bash "$CLAUDE_PLUGIN_ROOT/scripts/init-session.sh"`

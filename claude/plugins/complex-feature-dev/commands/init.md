@@ -1,5 +1,5 @@
 ---
-description: Initialize feature-dev planning files (task_plan.md/findings.md/progress.md)
+description: Initialize complex-feature-dev planning files (task_plan.md/findings.md/progress.md)
 ---
 
 # Initialize Planning Files

@@ -1,4 +1,4 @@
-# Initialize `feature-dev` planning files in your project.
+# Initialize `complex-feature-dev` planning files in your project.
 # Default: create files in git repo root (if inside a git repo), otherwise current directory.
 
 [CmdletBinding()]
