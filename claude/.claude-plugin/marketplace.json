@@ -1,0 +1,14 @@
+{
+  "name": "complex-dev-skills",
+  "owner": {
+    "name": "littlestudent886"
+  },
+  "plugins": [
+    {
+      "name": "feature-dev",
+      "source": "./plugins/feature-dev",
+      "description": "Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md).",
+      "version": "1.0.1"
+    }
+  ]
+}
