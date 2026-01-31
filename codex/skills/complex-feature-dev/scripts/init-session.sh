@@ -13,7 +13,7 @@ fi
 
 usage() {
   cat <<'EOF'
-init-session.sh: initialize feature-dev planning files in your project
+init-session.sh: initialize complex-feature-dev planning files in your project
 
 By default, files are created in the git repo root (if inside a git repo),
 otherwise in the current directory.

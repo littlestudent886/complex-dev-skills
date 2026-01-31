@@ -1,18 +1,18 @@
 {
   "name": "complex-dev-skills",
   "owner": {
-    "name": "zzc"
+    "name": "littlestudent886"
   },
   "metadata": {
     "description": "Personal marketplace for Claude plugins",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "plugins": [
     {
-      "name": "feature-dev",
-      "source": "./claude/plugins/feature-dev",
+      "name": "complex-feature-dev",
+      "source": "./claude/plugins/complex-feature-dev",
       "description": "Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md).",
-      "version": "1.0.0"
+      "version": "1.0.1"
     }
   ]
 }

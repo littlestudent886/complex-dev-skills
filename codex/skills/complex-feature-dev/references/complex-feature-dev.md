@@ -1,6 +1,6 @@
 # Feature Development Workflow (Reference)
 
-This file is a more detailed reference for the `feature-dev` Codex skill. It describes the same 7-phase workflow, with richer guidance and reusable prompt templates.
+This file is a more detailed reference for the `complex-feature-dev` Codex skill. It describes the same 7-phase workflow, with richer guidance and reusable prompt templates.
 
 ## Core Principles
 

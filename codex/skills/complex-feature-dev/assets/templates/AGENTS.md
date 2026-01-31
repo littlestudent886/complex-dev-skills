@@ -9,12 +9,12 @@ These instructions help Codex stay consistent on long or complex tasks in this r
   - `findings.md` — requirements, discoveries, decisions
   - `progress.md` — session log + tests
 - If missing, initialize them:
-  - macOS/Linux (or Windows Git Bash): `bash "${CODEX_HOME:-$HOME/.codex}/skills/feature-dev/scripts/init-session.sh"`
+  - macOS/Linux (or Windows Git Bash): `bash "${CODEX_HOME:-$HOME/.codex}/skills/complex-feature-dev/scripts/init-session.sh"`
   - Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "$env:CODEX_HOME\skills\feature-dev\scripts\init-session.ps1"`
 
 ## Workflow Guardrails
 
-- For new features / multi-file changes, follow the 7-phase `feature-dev` workflow.
+- For new features / multi-file changes, follow the 7-phase `complex-feature-dev` workflow.
 - Do not start implementation until the user explicitly approves.
 - Before major decisions, re-read `task_plan.md` to refresh goals.
 - Log discoveries to `findings.md` and test results to `progress.md`.

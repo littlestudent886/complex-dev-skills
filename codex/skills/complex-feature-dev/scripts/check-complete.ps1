@@ -38,7 +38,7 @@ if (-not (Test-Path $planPath)) {
   exit 1
 }
 
-Write-Host "=== Feature-Dev Completion Check ==="
+Write-Host "=== Complex-Feature-Dev Completion Check ==="
 
 $content = Get-Content -Path $planPath -Raw -Encoding UTF8
 

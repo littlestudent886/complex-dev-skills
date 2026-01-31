@@ -1,5 +1,5 @@
 ---
-name: feature-dev
+name: complex-feature-dev
 version: "1.0.0"
 description: Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md) for complex tasks.
 user-invocable: true
@@ -16,7 +16,7 @@ hooks:
       hooks:
         - type: command
           command: |
-            SCRIPT_DIR="${CODEX_HOME:-$HOME/.codex}/skills/feature-dev/scripts"
+            SCRIPT_DIR="${CODEX_HOME:-$HOME/.codex}/skills/complex-feature-dev/scripts"
 
             IS_WINDOWS=0
             if [ "${OS-}" = "Windows_NT" ]; then
@@ -72,7 +72,7 @@ hooks:
             if [ -f "$PLAN_FILE" ] && [ -f "$FINDINGS_FILE" ] && [ -f "$PROGRESS_FILE" ]; then
               print_plan_head "$PLAN_FILE"
             else
-              echo "[feature-dev] Planning files not found (task_plan.md/findings.md/progress.md). Initializing..."
+              echo "[complex-feature-dev] Planning files not found (task_plan.md/findings.md/progress.md). Initializing..."
               init_plan_files || true
 
               ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
@@ -81,24 +81,24 @@ hooks:
               PROGRESS_FILE="${ROOT}/progress.md"
 
               if [ -f "$PLAN_FILE" ] && [ -f "$FINDINGS_FILE" ] && [ -f "$PROGRESS_FILE" ]; then
-                echo "[feature-dev] Initialized planning files."
+                echo "[complex-feature-dev] Initialized planning files."
                 print_plan_head "$PLAN_FILE"
               else
-                echo "[feature-dev] Init failed. Run manually:"
-                echo "  bash \"${CODEX_HOME:-$HOME/.codex}/skills/feature-dev/scripts/init-session.sh\""
-                echo "  pwsh -ExecutionPolicy Bypass -File \"${CODEX_HOME:-$HOME/.codex}/skills/feature-dev/scripts/init-session.ps1\""
+                echo "[complex-feature-dev] Init failed. Run manually:"
+                echo "  bash \"${CODEX_HOME:-$HOME/.codex}/skills/complex-feature-dev/scripts/init-session.sh\""
+                echo "  pwsh -ExecutionPolicy Bypass -File \"${CODEX_HOME:-$HOME/.codex}/skills/complex-feature-dev/scripts/init-session.ps1\""
               fi
             fi
   PostToolUse:
     - matcher: "Write|Edit"
       hooks:
         - type: command
-          command: "echo '[feature-dev] If you completed a phase, update task_plan.md status and record notes in findings.md/progress.md.'"
+          command: "echo '[complex-feature-dev] If you completed a phase, update task_plan.md status and record notes in findings.md/progress.md.'"
   Stop:
     - hooks:
         - type: command
           command: |
-            SCRIPT_DIR="${CODEX_HOME:-$HOME/.codex}/skills/feature-dev/scripts"
+            SCRIPT_DIR="${CODEX_HOME:-$HOME/.codex}/skills/complex-feature-dev/scripts"
 
             IS_WINDOWS=0
             if [ "${OS-}" = "Windows_NT" ]; then
@@ -158,12 +158,12 @@ Helpful extras (optional):
 From a Codex chat/session (run from anywhere inside your repo):
 
 ```text
-$feature-dev init
+$complex-feature-dev init
 ```
 
 Behavior:
 - Runs `scripts/init-session.(sh|ps1)` (creates `task_plan.md`, `findings.md`, `progress.md` if missing; targets git repo root by default)
-- Then stops (you can re-run `$feature-dev <feature description>` to start Phase 1)
+- Then stops (you can re-run `$complex-feature-dev <feature description>` to start Phase 1)
 
 Hard rule:
 - If the user’s request is exactly `init` / `initialize` / `初始化`, run the initializer via the shell tool (Bash on macOS/Linux; PowerShell on Windows) and stop (do not start Phase 1).
@@ -171,7 +171,7 @@ Hard rule:
 ## Reference Docs (Richer Guidance)
 
 This skill keeps the core workflow in `SKILL.md`, and ships deeper checklists/prompt templates in:
-- `references/feature-dev.md` (full workflow reference)
+- `references/complex-feature-dev.md` (full workflow reference)
 - `references/code-explorer.md` (Phase 2 checklist)
 - `references/code-architect.md` (Phase 4 checklist)
 - `references/code-reviewer.md` (Phase 6 checklist)
@@ -180,7 +180,7 @@ This skill keeps the core workflow in `SKILL.md`, and ships deeper checklists/pr
 ## Output Format
 
 At the end of each phase, present results using the output templates in:
-- `references/feature-dev.md` → “Phase Outputs”
+- `references/complex-feature-dev.md` → “Phase Outputs”
 - `references/examples.md`
 
 Keep user-facing messages structured and scannable (short headings + bullets + file:line where possible). Put deep details into `findings.md` and `progress.md`.
@@ -199,9 +199,9 @@ Also:
 This workflow **requires** these files. Do not proceed with Phase 1 until they exist.
 
 Initialize them (defaults to git repo root):
-- macOS/Linux (or Windows Git Bash): `bash "${CODEX_HOME:-$HOME/.codex}/skills/feature-dev/scripts/init-session.sh"`
-- Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "$env:CODEX_HOME\skills\feature-dev\scripts\init-session.ps1"`
-  - If `CODEX_HOME` is not set: `pwsh -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\skills\feature-dev\scripts\init-session.ps1"`
+- macOS/Linux (or Windows Git Bash): `bash "${CODEX_HOME:-$HOME/.codex}/skills/complex-feature-dev/scripts/init-session.sh"`
+- Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "$env:CODEX_HOME\skills\complex-feature-dev\scripts\init-session.ps1"`
+  - If `CODEX_HOME` is not set: `pwsh -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\skills\complex-feature-dev\scripts\init-session.ps1"`
 
 Alternatively, you can copy templates manually from this skill’s folder:
 - `assets/templates/task_plan.md`
