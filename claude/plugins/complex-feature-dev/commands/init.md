@@ -10,6 +10,8 @@ Create the 3 planning files in the project root (git repo root by default):
 - `progress.md`
 
 Run the initializer:
+
+Note: if you are in a bash environment (Git Bash/MSYS/WSL), prefer the bash command even on Windows.
 - macOS/Linux (or Windows Git Bash): `bash "$(ls -dt ~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/*/scripts/init-session.sh 2>/dev/null | head -1)"`
 - Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/<version>/scripts/init-session.ps1"`
 

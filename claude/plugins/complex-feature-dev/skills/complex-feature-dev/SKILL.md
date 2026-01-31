@@ -1,6 +1,6 @@
 ---
 name: complex-feature-dev
-version: "1.0.1"
+version: "1.0.2"
 description: Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md).
 user-invocable: true
 allowed-tools:
@@ -62,15 +62,7 @@ hooks:
             }
 
             init_plan_files() {
-              if [ "$IS_WINDOWS" -eq 1 ]; then
-                if command -v pwsh >/dev/null 2>&1; then
-                  pwsh -NoProfile -ExecutionPolicy Bypass -File "$SCRIPT_DIR/init-session.ps1" >/dev/null 2>&1 && return 0
-                fi
-                if command -v powershell >/dev/null 2>&1; then
-                  powershell -NoProfile -ExecutionPolicy Bypass -File "$SCRIPT_DIR/init-session.ps1" >/dev/null 2>&1 && return 0
-                fi
-              fi
-
+              # Prefer bash init script first (works on Windows Git Bash/MSYS/WSL too).
               if command -v bash >/dev/null 2>&1; then
                 bash "$SCRIPT_DIR/init-session.sh" >/dev/null 2>&1 && return 0
               fi
@@ -79,8 +71,19 @@ hooks:
                 "$SCRIPT_DIR/init-session.sh" >/dev/null 2>&1 && return 0
               fi
 
+              # If bash isn't available, try PowerShell (Windows).
+              if [ "$IS_WINDOWS" -eq 1 ]; then
+                if command -v powershell >/dev/null 2>&1; then
+                  powershell -NoProfile -ExecutionPolicy Bypass -File "$SCRIPT_DIR/init-session.ps1" >/dev/null 2>&1 && return 0
+                fi
+                if command -v pwsh >/dev/null 2>&1; then
+                  pwsh -NoProfile -ExecutionPolicy Bypass -File "$SCRIPT_DIR/init-session.ps1" >/dev/null 2>&1 && return 0
+                fi
+              fi
+
               return 1
             }
+
 
             if [ -f "$PLAN_FILE" ] && [ -f "$FINDINGS_FILE" ] && [ -f "$PROGRESS_FILE" ]; then
               print_plan_head "$PLAN_FILE"
