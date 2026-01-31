@@ -1,6 +1,6 @@
 ---
 name: complex-feature-dev
-version: "1.0.0"
+version: "1.0.1"
 description: Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md).
 user-invocable: true
 allowed-tools:
@@ -16,8 +16,21 @@ hooks:
       hooks:
         - type: command
           command: |
-            SCRIPT_DIR="${CLAUDE_PLUGIN_ROOT}/scripts"
-
+            HOME_DIR="$(cd ~ 2>/dev/null && pwd)"
+            SCRIPT_DIR="$(ls -dt "${HOME_DIR}/.claude/plugins/cache/complex-dev-skills/complex-feature-dev"/*/scripts 2>/dev/null | head -1)"
+            if [ -z "${SCRIPT_DIR}" ]; then
+              CAND="${HOME_DIR}/.claude/plugins/marketplaces/complex-dev-skills/claude/plugins/complex-feature-dev/scripts"
+              if [ -d "${CAND}" ]; then
+                SCRIPT_DIR="${CAND}"
+              fi
+            fi
+            if [ -z "${SCRIPT_DIR}" ]; then
+              echo "[complex-feature-dev] ERROR: cannot locate plugin scripts directory." >&2
+              echo "[complex-feature-dev] Expected either:" >&2
+              echo "  - ~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/<version>/scripts" >&2
+              echo "  - ~/.claude/plugins/marketplaces/complex-dev-skills/claude/plugins/complex-feature-dev/scripts" >&2
+              exit 0
+            fi
             IS_WINDOWS=0
             if [ "${OS-}" = "Windows_NT" ]; then
               IS_WINDOWS=1
@@ -85,8 +98,8 @@ hooks:
                 print_plan_head "$PLAN_FILE"
               else
                 echo "[complex-feature-dev] Init failed. Run manually:"
-                echo "  bash \"${CLAUDE_PLUGIN_ROOT}/scripts/init-session.sh\""
-                echo "  pwsh -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}\\scripts\\init-session.ps1\""
+                echo "  bash \"$SCRIPT_DIR/init-session.sh\""
+                echo "  pwsh -ExecutionPolicy Bypass -File \"$SCRIPT_DIR/init-session.ps1\""
               fi
             fi
   PostToolUse:
@@ -98,8 +111,21 @@ hooks:
     - hooks:
         - type: command
           command: |
-            SCRIPT_DIR="${CLAUDE_PLUGIN_ROOT}/scripts"
-
+            HOME_DIR="$(cd ~ 2>/dev/null && pwd)"
+            SCRIPT_DIR="$(ls -dt "${HOME_DIR}/.claude/plugins/cache/complex-dev-skills/complex-feature-dev"/*/scripts 2>/dev/null | head -1)"
+            if [ -z "${SCRIPT_DIR}" ]; then
+              CAND="${HOME_DIR}/.claude/plugins/marketplaces/complex-dev-skills/claude/plugins/complex-feature-dev/scripts"
+              if [ -d "${CAND}" ]; then
+                SCRIPT_DIR="${CAND}"
+              fi
+            fi
+            if [ -z "${SCRIPT_DIR}" ]; then
+              echo "[complex-feature-dev] ERROR: cannot locate plugin scripts directory." >&2
+              echo "[complex-feature-dev] Expected either:" >&2
+              echo "  - ~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/<version>/scripts" >&2
+              echo "  - ~/.claude/plugins/marketplaces/complex-dev-skills/claude/plugins/complex-feature-dev/scripts" >&2
+              exit 0
+            fi
             IS_WINDOWS=0
             if [ "${OS-}" = "Windows_NT" ]; then
               IS_WINDOWS=1
@@ -172,8 +198,8 @@ To initialize them, run:
 - `/complex-feature-dev:init` (recommended)
 
 Or via terminal:
-- macOS/Linux (or Windows Git Bash): `bash "$CLAUDE_PLUGIN_ROOT/scripts/init-session.sh"`
-- Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "$env:CLAUDE_PLUGIN_ROOT\\scripts\\init-session.ps1"`
+- macOS/Linux (or Windows Git Bash): `bash "$(ls -dt ~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/*/scripts/init-session.sh 2>/dev/null | head -1)"`
+- Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/<version>/scripts/init-session.ps1"`
 
 ## Project Guidelines
 

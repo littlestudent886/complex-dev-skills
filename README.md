@@ -83,19 +83,19 @@ Notes:
 
 #### Alternative: initialize via terminal
 
-- Codex (macOS/Linux or Windows Git Bash): `bash "${CODEX_HOME:-$HOME/.codex}/skills/feature-dev/scripts/init-session.sh"`
-- Codex (Windows PowerShell): `pwsh -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\skills\feature-dev\scripts\init-session.ps1"`
-- Claude Code (macOS/Linux or Windows Git Bash): `bash "$CLAUDE_PLUGIN_ROOT/scripts/init-session.sh"`
-- Claude Code (Windows PowerShell): `pwsh -ExecutionPolicy Bypass -File "$env:CLAUDE_PLUGIN_ROOT\scripts\init-session.ps1"`
+- Codex (macOS/Linux or Windows Git Bash): `bash ~/.codex/skills/complex-feature-dev/scripts/init-session.sh`
+- Codex (Windows PowerShell): `pwsh -ExecutionPolicy Bypass -File "~/.codex/skills/complex-feature-dev/scripts/init-session.ps1"`
+- Claude Code (macOS/Linux or Windows Git Bash): `bash "$(ls -dt ~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/*/scripts/init-session.sh 2>/dev/null | head -1)"`
+- Claude Code (Windows PowerShell): `pwsh -ExecutionPolicy Bypass -File "~/.claude/plugins/cache/complex-dev-skills/complex-feature-dev/<version>/scripts/init-session.ps1"`
 
 ### 2) Start the workflow
 
 - Codex: `$complex-feature-dev <feature description>`
-- Claude Code: `/feature-dev:start <feature description>`
+- Claude Code: `/complex-feature-dev <feature description>`
 
 Example:
 - Codex: `$complex-feature-dev Add a dark mode toggle to the settings page`
-- Claude Code: `/feature-dev:start Add a dark mode toggle to the settings page`
+- Claude Code: `/complex-feature-dev Add a dark mode toggle to the settings page`
 
 ### 3) The 7 phases (what to expect)
 

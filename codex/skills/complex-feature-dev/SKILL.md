@@ -1,6 +1,6 @@
 ---
 name: complex-feature-dev
-version: "1.0.0"
+version: "1.0.1"
 description: Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md) for complex tasks.
 user-invocable: true
 allowed-tools:

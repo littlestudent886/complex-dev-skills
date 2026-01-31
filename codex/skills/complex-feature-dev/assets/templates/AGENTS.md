@@ -10,7 +10,7 @@ These instructions help Codex stay consistent on long or complex tasks in this r
   - `progress.md` — session log + tests
 - If missing, initialize them:
   - macOS/Linux (or Windows Git Bash): `bash "${CODEX_HOME:-$HOME/.codex}/skills/complex-feature-dev/scripts/init-session.sh"`
-  - Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "$env:CODEX_HOME\skills\feature-dev\scripts\init-session.ps1"`
+  - Windows PowerShell: `pwsh -ExecutionPolicy Bypass -File "~/.codex/skills/complex-feature-dev/scripts/init-session.ps1"`
 
 ## Workflow Guardrails
 
