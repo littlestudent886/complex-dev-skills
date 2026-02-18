@@ -9,7 +9,7 @@ This file is a more detailed reference for the `complex-feature-dev` Codex skill
 - **Design deliberately**: present alternatives and trade-offs; pick an approach with explicit approval.
 - **Implement in small steps**: keep changes verifiable; avoid unrelated refactors.
 - **Review for quality**: correctness, security, conventions, simplicity.
-- **Use persistent planning files**: keep `task_plan.md`, `findings.md`, `progress.md` up to date for long tasks.
+- **Use persistent planning files**: keep `task_plan.md`, `findings.md`, `progress.md` up to date at a **macro** level (status + summary + durable decisions).
 
 ## How to Run This in Codex
 
@@ -26,7 +26,7 @@ Use the reference prompts below or the role guides:
 
 ## Phase Outputs
 
-When presenting results to the user, use the following output templates. Keep them crisp, and put deeper details into the planning files (`findings.md`, `progress.md`) when appropriate.
+When presenting results to the user, use the following output templates. Keep them crisp; planning files should remain macro/concise (avoid pasting full phase outputs).
 
 ### Phase 1 Output Template (Discovery)
 
@@ -146,7 +146,7 @@ Checklist:
 - Constraints: compatibility, performance, security, rollout/feature flags, timelines.
 - Definition of done: explicit acceptance criteria.
 
-Write outcomes to `findings.md`:
+Write outcomes to `findings.md` (brief):
 - Confirmed requirements
 - Acceptance criteria
 - Open questions to resolve in Phase 3
@@ -219,7 +219,7 @@ Guidelines:
 - Keep steps small and testable.
 - Prefer established patterns and reuse.
 - Avoid drive-by refactors.
-- Log: actions/files/tests in `progress.md`; errors in `task_plan.md`.
+- Log (brief): key actions/files/tests in `progress.md`; errors in `task_plan.md`.
 
 ## Phase 6: Quality Review
 

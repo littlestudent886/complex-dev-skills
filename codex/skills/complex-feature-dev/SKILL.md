@@ -1,7 +1,7 @@
 ---
 name: complex-feature-dev
-version: "1.0.1"
-description: Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md) for complex tasks.
+version: "1.1.0"
+description: Full-cycle 7-phase feature development workflow with persistent file-based planning (task_plan.md, findings.md, progress.md) as macro memory.
 user-invocable: true
 allowed-tools:
   - Read
@@ -93,7 +93,7 @@ hooks:
     - matcher: "Write|Edit"
       hooks:
         - type: command
-          command: "echo '[complex-feature-dev] If you completed a phase, update task_plan.md status and record notes in findings.md/progress.md.'"
+          command: "echo '[complex-feature-dev] Update planning files with brief macro notes (overall status / current micro-phase / key decisions).'"
   Stop:
     - hooks:
         - type: command
@@ -141,7 +141,7 @@ metadata:
 
 A codebase-agnostic workflow for building new features safely:
 - 7 phases (discovery → exploration → questions → architecture → implement → review → summary)
-- Persistent planning files for long tasks (so goals and discoveries don’t get lost)
+- Persistent planning files for long tasks (macro memory: goal, status, next actions, and durable decisions)
 
 ## Inputs
 
@@ -163,6 +163,7 @@ $complex-feature-dev init
 
 Behavior:
 - Runs `scripts/init-session.(sh|ps1)` (creates `task_plan.md`, `findings.md`, `progress.md` if missing; targets git repo root by default)
+- Also creates `AGENTS.md` if missing (unless the init script is run with `--no-agents`)
 - Then stops (you can re-run `$complex-feature-dev <feature description>` to start Phase 1)
 
 Hard rule:
@@ -183,7 +184,7 @@ At the end of each phase, present results using the output templates in:
 - `references/complex-feature-dev.md` → “Phase Outputs”
 - `references/examples.md`
 
-Keep user-facing messages structured and scannable (short headings + bullets + file:line where possible). Put deep details into `findings.md` and `progress.md`.
+Keep user-facing messages structured and scannable (short headings + bullets + file:line where possible). Keep planning files macro/concise; avoid long transcripts.
 
 Also:
 - Always label the current phase in user-facing output (e.g. `Phase 3: Clarifying Questions`). Use the user’s language when appropriate.
@@ -192,9 +193,11 @@ Also:
 ## Quick Start (Persistent Planning Files)
 
 **These files live in the project root (not in the skill folder):**
-- `task_plan.md` (roadmap + phase status)
-- `findings.md` (requirements, discoveries, decisions)
-- `progress.md` (chronological log + tests)
+- `task_plan.md` (macro status + summary + next actions + decisions/errors)
+- `findings.md` (durable findings + decisions)
+- `progress.md` (short session notes + validations)
+- Recommended (agent instructions):
+  - `AGENTS.md` (Codex reads this)
 
 This workflow **requires** these files. Do not proceed with Phase 1 until they exist.
 
@@ -207,6 +210,7 @@ Alternatively, you can copy templates manually from this skill’s folder:
 - `assets/templates/task_plan.md`
 - `assets/templates/findings.md`
 - `assets/templates/progress.md`
+- `assets/templates/AGENTS.md`
 
 ## Project Guidelines (Codex)
 
@@ -218,17 +222,17 @@ Alternatively, you can copy templates manually from this skill’s folder:
 
 1. **Never skip Phase 3 (Clarifying Questions).** If anything is underspecified, ask and **wait**.
 2. **Never start Phase 5 (Implementation) without explicit approval.**
-3. **Use the planning files as persistent memory.** Update them throughout.
+3. **Use the planning files as persistent macro memory.** Keep them concise and durable.
 4. **Read before decide.** Before major decisions, re-read `task_plan.md`.
-5. **Log all errors + don’t repeat failures.** If an action fails, change the approach.
+5. **Log errors briefly + don’t repeat failures.** If an action fails, change the approach.
 
 ## How to Track Progress
 
 - Use `update_plan` for the UI checklist (7 steps).
 - Use planning files for persistence:
-  - After each phase: set `**Status:** pending|in_progress|complete` in `task_plan.md`.
-  - After discoveries: write them to `findings.md`.
-  - After concrete actions/tests: write them to `progress.md`.
+  - During the workflow: keep `task_plan.md` updated with `**Overall Status:**` and (optionally) `**Current Micro-Phase:**`.
+  - After durable discoveries/decisions: write brief notes to `findings.md` (prefer file:line pointers).
+  - After key actions/validations: write brief notes to `progress.md` (commands + results).
 
 ---
 
@@ -239,7 +243,7 @@ Alternatively, you can copy templates manually from this skill’s folder:
 - If planning files are missing, run the initializer script via the Bash tool (don’t ask the user to manually copy templates), and do not proceed until the files exist.
 - Restate the request as acceptance criteria; confirm scope and non-goals.
 - Capture constraints (compatibility, performance, time, rollout).
-- Write confirmed requirements + acceptance criteria to `findings.md`.
+- Write brief confirmed requirements + acceptance criteria to `findings.md`.
 
 ## Phase 2: Codebase Exploration
 
@@ -254,7 +258,7 @@ Do 2–3 independent exploration passes:
 - Pass C: identify testing/build/lint/config/observability conventions
 
 For each pass:
-- record entry points, call chain, and key files (prefer file:line) in `findings.md`.
+- record key files/patterns (prefer file:line; keep it macro) in `findings.md`.
 
 Also:
 - locate and follow `AGENTS.md` instructions (if present).
@@ -298,7 +302,7 @@ For each approach include:
 - key abstractions + data flow
 - trade-offs (risk/time/testability/maintainability)
 
-Write the chosen approach + rationale to `findings.md` and `task_plan.md`.
+Write the chosen approach + rationale (brief) to `findings.md` and `task_plan.md`.
 
 ## Phase 5: Implementation (Requires Approval)
 
@@ -306,8 +310,8 @@ Write the chosen approach + rationale to `findings.md` and `task_plan.md`.
 
 - Implement in small verifiable increments.
 - Follow existing conventions; avoid unrelated refactors.
-- Log actions/files/tests in `progress.md`.
-- Log errors in `task_plan.md` (and resolution in `progress.md`).
+- Log key actions/files/tests in `progress.md` (brief).
+- Log errors in `task_plan.md` (and brief resolution in `progress.md`).
 
 ## Phase 6: Quality Review
 

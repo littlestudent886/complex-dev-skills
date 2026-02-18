@@ -68,9 +68,13 @@ For local development/testing, add the local repo path as a marketplace:
 `complex-feature-dev` is a full workflow for complex feature development.
 
 It uses 3 planning files in your repo root:
-- `task_plan.md` — phases + status + decisions + errors
-- `findings.md` — requirements, discoveries, decisions
-- `progress.md` — session log + tests + results
+- `task_plan.md` — macro status + summary + next actions + decisions/errors
+- `findings.md` — durable findings + decisions (macro)
+- `progress.md` — short session notes + validations
+
+It also initializes agent instruction files (if missing):
+- Codex: `AGENTS.md`
+- Claude Code: `CLAUDE.md`
 
 Notes:
 - Planning files are created in the git repo root by default.

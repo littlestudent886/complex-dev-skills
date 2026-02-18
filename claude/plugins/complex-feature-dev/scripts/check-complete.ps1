@@ -41,11 +41,35 @@ Write-Host "=== Complex-Feature-Dev Completion Check ==="
 
 $content = Get-Content -Path $planPath -Raw -Encoding UTF8
 
+$overallMatch = [regex]::Match(
+  $content,
+  "^\*\*Overall Status:\*\*\s*(.+?)\s*$",
+  [System.Text.RegularExpressions.RegexOptions]::Multiline
+)
+
+if ($overallMatch.Success) {
+  $overall = $overallMatch.Groups[1].Value.Trim()
+  $overallLower = $overall.ToLowerInvariant()
+
+  Write-Host "Mode:           overall_status"
+  Write-Host "Overall status: $overall"
+  Write-Host ""
+
+  if ($overallLower -eq "complete") {
+    Write-Host "TASK COMPLETE"
+    exit 0
+  }
+
+  Write-Host "TASK NOT COMPLETE"
+  exit 1
+}
+
 $TOTAL = ([regex]::Matches($content, "^### Phase ", [System.Text.RegularExpressions.RegexOptions]::Multiline)).Count
 $COMPLETE = ([regex]::Matches($content, "\*\*Status:\*\* complete")).Count
 $IN_PROGRESS = ([regex]::Matches($content, "\*\*Status:\*\* in_progress")).Count
 $PENDING = ([regex]::Matches($content, "\*\*Status:\*\* pending")).Count
 
+Write-Host "Mode:           phase_status"
 Write-Host "Total phases:   $TOTAL"
 Write-Host "Complete:       $COMPLETE"
 Write-Host "In progress:    $IN_PROGRESS"
@@ -59,4 +83,3 @@ if ($TOTAL -gt 0 -and $COMPLETE -eq $TOTAL) {
 
 Write-Host "TASK NOT COMPLETE"
 exit 1
-

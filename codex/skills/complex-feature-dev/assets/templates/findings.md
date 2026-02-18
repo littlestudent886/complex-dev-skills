@@ -1,27 +1,16 @@
 # Findings & Decisions
 <!--
-  Purpose: Store all discoveries so they survive long sessions.
-  Rule of thumb: after any meaningful discovery (or ~2 tool ops), update this file.
+  Purpose: Store durable findings and decisions so they survive long sessions.
+  Keep it macro and concise (no transcript). Prefer file:line pointers.
 -->
 
-## Requirements (as confirmed)
+## Summary (macro)
 -
 
-## Acceptance Criteria
+## Requirements / Acceptance Criteria (as confirmed)
 -
 
-## Codebase Exploration Findings
-
-### Similar Features / Prior Art
--
-
-### Key Files to Read
--
-
-### Architecture & Conventions
--
-
-## Open Questions (to ask in Phase 3)
+## Key Findings
 -
 
 ## Technical Decisions
@@ -29,13 +18,16 @@
 |----------|-----------|
 |          |           |
 
+## Open Questions
+-
+
+## Key Files / References
+-
+
+## Risks / TODO
+-
+
 ## Issues Encountered
 | Issue | Resolution |
 |-------|------------|
 |       |            |
-
-## Resources
--
-
-## Visual/Prototype Notes (if any)
--

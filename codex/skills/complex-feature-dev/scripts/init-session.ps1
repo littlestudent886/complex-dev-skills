@@ -7,6 +7,7 @@ param(
   [string]$Dir,
   [switch]$Here,
   [switch]$Agents,
+  [switch]$NoAgents,
   [switch]$Force
 )
 
@@ -71,7 +72,8 @@ Copy-TemplateFile -FileName "task_plan.md"
 Copy-TemplateFile -FileName "findings.md"
 Copy-TemplateFile -FileName "progress.md"
 
-if ($Agents) {
+if (-not $NoAgents) {
+  # Default: create agent instruction files (legacy -Agents switch still supported).
   Copy-TemplateFile -FileName "AGENTS.md"
 }
 
@@ -89,3 +91,6 @@ Write-Host "Planning files ready in: $destDir"
 Write-Host "  - task_plan.md"
 Write-Host "  - findings.md"
 Write-Host "  - progress.md"
+if (-not $NoAgents) {
+  Write-Host "  - AGENTS.md"
+}

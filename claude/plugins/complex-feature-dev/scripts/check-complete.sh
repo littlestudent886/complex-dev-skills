@@ -15,6 +15,20 @@ fi
 
 echo "=== Complex-Feature-Dev Completion Check ==="
 
+overall_line="$(grep -m1 -E '^\*\*Overall Status:\*\*' "${PLAN_FILE}" 2>/dev/null || true)"
+if [ -n "${overall_line}" ]; then
+  overall="$(printf '%s' "${overall_line}" | sed -E 's/^\*\*Overall Status:\*\*//; s/^[[:space:]]+//; s/[[:space:]]+$//')"
+  echo "Mode:           overall_status"
+  echo "Overall status: ${overall:-<empty>}"
+  echo ""
+  if [ "${overall}" = "complete" ]; then
+    echo "TASK COMPLETE"
+    exit 0
+  fi
+  echo "TASK NOT COMPLETE"
+  exit 1
+fi
+
 total="$(grep -cE '^### Phase ' "${PLAN_FILE}" || true)"
 complete="$(grep -cF '**Status:** complete' "${PLAN_FILE}" || true)"
 in_progress="$(grep -cF '**Status:** in_progress' "${PLAN_FILE}" || true)"
@@ -25,6 +39,7 @@ pending="$(grep -cF '**Status:** pending' "${PLAN_FILE}" || true)"
 : "${in_progress:=0}"
 : "${pending:=0}"
 
+echo "Mode:           phase_status"
 echo "Total phases:   ${total}"
 echo "Complete:       ${complete}"
 echo "In progress:    ${in_progress}"
@@ -38,4 +53,3 @@ fi
 
 echo "TASK NOT COMPLETE"
 exit 1
-

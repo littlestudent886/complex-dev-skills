@@ -68,6 +68,7 @@ function Copy-TemplateFile {
 Copy-TemplateFile -FileName "task_plan.md"
 Copy-TemplateFile -FileName "findings.md"
 Copy-TemplateFile -FileName "progress.md"
+Copy-TemplateFile -FileName "CLAUDE.md"
 
 # Fill in date placeholder (if present)
 $date = Get-Date -Format "yyyy-MM-dd"
@@ -83,4 +84,4 @@ Write-Host "Planning files ready in: $destDir"
 Write-Host "  - task_plan.md"
 Write-Host "  - findings.md"
 Write-Host "  - progress.md"
-
+Write-Host "  - CLAUDE.md"

@@ -98,6 +98,7 @@ copy_template() {
 copy_template "task_plan.md"
 copy_template "findings.md"
 copy_template "progress.md"
+copy_template "CLAUDE.md"
 
 # Fill in date placeholder (if present)
 if [ -f "${DEST_DIR}/progress.md" ]; then
@@ -109,4 +110,4 @@ echo "Planning files ready in: ${DEST_DIR}"
 echo "  - task_plan.md"
 echo "  - findings.md"
 echo "  - progress.md"
-
+echo "  - CLAUDE.md"

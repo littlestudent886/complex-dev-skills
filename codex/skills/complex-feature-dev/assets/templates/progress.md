@@ -2,31 +2,35 @@
 
 ## Session: {{DATE}}
 
-## Summary
-- Current phase: Phase 1
-- Goal: [link to task_plan.md Goal]
+## Summary (macro)
+- Current micro-phase (optional): Phase 1/7 — Discovery
+- What changed (1–5 bullets):
+  - ...
 
-## Actions Taken
+## Actions (chronological, brief)
 -
 
-## Files Created/Modified
+## Files Touched
 -
 
-## Test Results
-| Test | Input/Steps | Expected | Actual | Status |
-|------|-------------|----------|--------|--------|
-|      |             |          |        |        |
+## Tests / Checks
+| Command | Result |
+|---------|--------|
+|         |        |
 
-## Error Log
-| Timestamp | Error | Attempt | Resolution |
-|-----------|-------|---------|------------|
-|           |       | 1       |            |
+## Errors
+| Timestamp | Error | Resolution |
+|-----------|-------|------------|
+|           |       |            |
 
 ## 5-Question Reboot Check
 | Question | Answer |
 |----------|--------|
-| Where am I? | [Current phase] |
-| Where am I going? | [Next phases] |
-| What's the goal? | [Goal] |
+| Where am I? | [Current micro-phase] |
+| Where am I going? | [Next action(s)] |
+| What's the goal? | [Goal from task_plan.md] |
 | What have I learned? | See findings.md |
 | What have I done? | See above |
+
+## Notes
+- Keep entries short; this is a journal, not a transcript.
